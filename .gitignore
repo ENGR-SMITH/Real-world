@@ -1,0 +1,22 @@
+.freebuff/
+
+# Local dependencies and build output
+webapp/node_modules/
+webapp/.next/
+webapp/tsconfig.tsbuildinfo
+
+# Logs and runtime output
+*.log
+blender/runs/
+
+# Local caches
+**/__pycache__/
+*.py[cod]
+
+# Blender backup files
+*.blend1
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example

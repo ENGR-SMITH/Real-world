@@ -1,0 +1,23 @@
+{
+  "source": "jet-kite render provenance",
+  "captured_from": "PNG text chunks written by Blender in mcp-demo/jetkite_*.png (Camera, Scene, File), which name the cameras each canonical render was made with",
+  "entries": {
+    "Cam_Hero": "camera",
+    "Cam_Belly": "camera",
+    "Cam_Bay": "camera",
+    "Cam_Cockpit": "camera"
+  },
+  "evidence": {
+    "Cam_Hero": "Camera tag of mcp-demo/jetkite_hero.png (scene JetKite, 1200x800, render 00:04.83)",
+    "Cam_Belly": "Camera tag of mcp-demo/jetkite_belly.png (scene JetKite, 1200x800, render 00:12.92)",
+    "Cam_Bay": "Camera tag of mcp-demo/jetkite_bay.png (scene JetKite, 1200x800, render 00:13.55)",
+    "Cam_Cockpit": "Camera tag of mcp-demo/jetkite_cockpit.png (scene JetKite, 1200x800, render 00:40.50)"
+  },
+  "render_settings": {
+    "resolution": [1200, 800],
+    "file_format": "PNG",
+    "scene": "JetKite",
+    "blend_source": "jet-kite.blend"
+  },
+  "notes": "Only cameras are recorded here, and only because each one is named by a render that exists in this repository. The scene's lights are deliberately absent: no render or export in this project names them, and the workflow must not assume a light it cannot verify. A light operation therefore comes back as needing a person, which is the intended behaviour. To fill this in, run get_scene_info against the JetKite scene in Blender and record the light object names with their evidence."
+}

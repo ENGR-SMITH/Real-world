@@ -1,0 +1,20 @@
+/* scan only the app's own source: the 56 MB scene in public/assets is not CSS
+   and walking it makes the scanner allocate absurd amounts of memory */
+@import "tailwindcss" source("..");
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overscroll-behavior: none;
+  background: #0b1220;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+canvas {
+  touch-action: none;
+}

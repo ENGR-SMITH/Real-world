@@ -1,0 +1,171 @@
+{
+  "task_id": "scene-run-jetkite",
+  "goal": "Keep the jet-style kite and its CO2 cartridge launcher deliverable as a legible, correctly scaled tabletop product scene with readable silhouette, panel accents and belly-bay detail",
+  "units": "meters",
+  "coordinate_system": "glTF 2.0 / Blender export: right-handed, Z-up in Blender, Y-up in the glTF file",
+  "intended_use": "product launch visuals and a web render sheet",
+  "audience": "product buyers and the design review",
+  "must_have": [
+    "Jet_Fuselage",
+    "Jet_Wing_*",
+    "Jet_Bay_*",
+    "Jet_Canopy",
+    "Jet_Streamer_*"
+  ],
+  "visual_targets": [
+    "readable silhouette in the hero view",
+    "subject fully inside the frame in every required view",
+    "soft studio lighting with no clipped highlights",
+    "matte finish on the skin with panel colour accents legible",
+    "belly bay and cartridge detail legible at full-frame"
+  ],
+  "preferences": [
+    "warm-neutral backdrop",
+    "consistent colour management across views so iterations are comparable"
+  ],
+  "requirements": [
+    {
+      "kind": "object_present",
+      "pattern": "Jet_Fuselage",
+      "min_count": 1,
+      "detail": "the hero body must exist in the editable scene"
+    },
+    {
+      "kind": "object_present",
+      "pattern": "Jet_Wing_*",
+      "min_count": 2,
+      "detail": "both wings must exist"
+    },
+    {
+      "kind": "object_present",
+      "pattern": "Jet_Bay_*",
+      "min_count": 2,
+      "detail": "both belly launch bays must exist"
+    },
+    {
+      "kind": "object_present",
+      "pattern": "Jet_Canister_*",
+      "min_count": 4,
+      "detail": "loaded and spare cartridge parts must exist"
+    },
+    {
+      "kind": "dimension",
+      "pattern": "Jet_Fuselage",
+      "axis": "z",
+      "min": 2.3,
+      "max": 2.5,
+      "detail": "fuselage length is the scaling anchor for the whole scene (measured 2.400 m)"
+    },
+    {
+      "kind": "dimension",
+      "pattern": "Jet_Wing_R",
+      "axis": "x",
+      "min": 0.85,
+      "max": 1.0,
+      "detail": "wing span (measured 0.920 m)"
+    },
+    {
+      "kind": "material",
+      "pattern": "Jet_Wing_*",
+      "materials": ["Jet_Panel_Red", "Jet_Panel_Amber", "Jet_Panel_Teal"],
+      "detail": "wings carry the panel colour accents the brief asks to read"
+    },
+    {
+      "kind": "material",
+      "pattern": "Jet_Bay_*",
+      "min_materials": 2,
+      "detail": "bay assemblies read as multi-material detail, not a single flat colour"
+    },
+    {
+      "kind": "material",
+      "pattern": "Jet_Canopy",
+      "materials": ["Jet_Canopy"],
+      "detail": "canopy keeps its own transmissive material"
+    },
+    {
+      "kind": "triangle_budget",
+      "max_triangles": 12000,
+      "detail": "web deliverable budget (measured 7450 triangles)"
+    },
+    {
+      "kind": "no_empty_mesh",
+      "pattern": "Jet_*",
+      "detail": "no placeholder object without geometry"
+    },
+    {
+      "kind": "view_rendered",
+      "views": ["hero", "belly", "bay"],
+      "detail": "the three views the render sheet depends on"
+    },
+    {
+      "kind": "export",
+      "path": "jet-kite.glb",
+      "detail": "the editable delivery file must stay readable as glTF with geometry"
+    }
+  ],
+  "views": [
+    {
+      "name": "hero",
+      "camera": "Cam_Hero",
+      "resolution": [1200, 800],
+      "purpose": "three-quarter hero: silhouette, materials, lighting intent",
+      "framing": "subject fills 45-85% of the frame, no edge clipping",
+      "engine": "BLENDER_EEVEE_NEXT",
+      "samples": 64,
+      "film_transparent": false,
+      "look": "AgX - Medium High Contrast",
+      "mandatory": true
+    },
+    {
+      "name": "belly",
+      "camera": "Cam_Belly",
+      "resolution": [1200, 800],
+      "purpose": "belly view: launch tubes and cartridge fit",
+      "framing": "belly features centred and fully inside the frame",
+      "engine": "BLENDER_EEVEE_NEXT",
+      "samples": 64,
+      "film_transparent": false,
+      "look": "AgX - Medium High Contrast",
+      "mandatory": true
+    },
+    {
+      "name": "bay",
+      "camera": "Cam_Bay",
+      "resolution": [1200, 800],
+      "purpose": "bay detail: door, ring and mouth legible at full-frame",
+      "framing": "the bay assembly fills a readable share of the frame",
+      "engine": "BLENDER_EEVEE_NEXT",
+      "samples": 64,
+      "film_transparent": false,
+      "look": "AgX - Medium High Contrast",
+      "mandatory": true
+    },
+    {
+      "name": "cockpit",
+      "camera": "Cam_Cockpit",
+      "resolution": [1200, 800],
+      "purpose": "optional cockpit detail for the render sheet",
+      "framing": "canopy and pitot readable",
+      "engine": "BLENDER_EEVEE_NEXT",
+      "samples": 64,
+      "film_transparent": false,
+      "look": "AgX - Medium High Contrast",
+      "mandatory": false
+    }
+  ],
+  "scene_limits": {
+    "write_scope": ["Jet_*", "Cam_*"],
+    "max_revision_rounds": 3,
+    "polygon_budget": 12000,
+    "required_views": ["hero", "belly", "bay"]
+  },
+  "delivery": {
+    "editable_scene": "jet-kite.glb",
+    "render_size": "1200x800",
+    "hero_object": "Jet_Fuselage",
+    "export_format": "glb",
+    "render_sheet": "mcp-demo/jetkite.html"
+  },
+  "notes": "Values verified against the shipped jet-kite.glb (43 mesh objects, 9 materials, 7450 triangles) and against the camera metadata of the existing renders in mcp-demo/ (Cam_Hero, Cam_Belly, Cam_Bay, Cam_Cockpit, scene JetKite, 1200x800).",
+  "version": 1
+}
